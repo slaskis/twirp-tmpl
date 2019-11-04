@@ -11,16 +11,15 @@ generate: tools api/demo/service.proto.ts web/demo/service.proto.ts
 .PHONY: generate
 
 tools: $(GO_TOOLS_BIN)
-	@:
+	go mod vendor
 .PHONY: tools
 
 api/demo/%: rpc/demo/*.proto
-	protoc -I rpc:vendor --gotemplate_out=debug=true,single-package-mode=true,all=true,template_dir=vendor/github.com/slaskis/twirp-tmpl/server:api/rpc rpc/demo/*.proto
+	protoc -I rpc:vendor --gotemplate_out=debug=true,single-package-mode=true,all=true,template_dir=vendor/github.com/slaskis/twirp-tmpl/server:api rpc/demo/*.proto
 
 web/demo/%: rpc/demo/*.proto
-	protoc -I rpc:vendor --gotemplate_out=debug=true,single-package-mode=true,all=true,template_dir=vendor/github.com/slaskis/twirp-tmpl/client:web/rpc rpc/demo/*.proto
+	protoc -I rpc:vendor --gotemplate_out=debug=true,single-package-mode=true,all=true,template_dir=vendor/github.com/slaskis/twirp-tmpl/client:web rpc/demo/*.proto
 	
-$(GO_TOOLS_BIN): tools.go
-	@mkdir -p $@
-	GOBIN=${PWD}/${GO_TOOLS_DIR} go get -u ${GO_TOOLS}
-	go mod vendor
+_tools/bin/%: tools.go
+	@mkdir -p ${GO_TOOLS_DIR}
+	GOBIN=${PWD}/${GO_TOOLS_DIR} go install ${GO_TOOLS}
