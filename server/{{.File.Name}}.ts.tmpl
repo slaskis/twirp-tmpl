@@ -126,7 +126,7 @@ async function json(req: IncomingMessage): Promise<any> {
     let body: Uint8Array[] = [];
     req.on("data", onData);
     req.on("aborted", onAbort);
-    req.on("close", close);
+    req.on("close", clean);
     req.on("error", onEnd);
     req.on("end", onEnd);
 
@@ -159,7 +159,7 @@ async function json(req: IncomingMessage): Promise<any> {
       body = [];
       req.off("data", onData);
       req.off("aborted", onAbort);
-      req.off("close", close);
+      req.off("close", clean);
       req.off("error", onEnd);
       req.off("end", onEnd);
     }
