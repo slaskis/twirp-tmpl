@@ -17,8 +17,8 @@ tools: $(GO_TOOLS_BIN)
 api/demo/%: rpc/demo/*.proto
 	protoc -I rpc:vendor --gotemplate_out=debug=true,single-package-mode=true,all=true,template_dir=vendor/github.com/slaskis/twirp-tmpl/server:api rpc/demo/*.proto
 
-web/demo/%: rpc/demo/*.proto
-	protoc -I rpc:vendor --gotemplate_out=debug=true,single-package-mode=true,all=true,template_dir=vendor/github.com/slaskis/twirp-tmpl/client:web rpc/demo/*.proto
+cli/demo/%: rpc/demo/*.proto
+	protoc -I rpc:vendor --gotemplate_out=debug=true,single-package-mode=true,all=true,template_dir=vendor/github.com/slaskis/twirp-tmpl/client:cli rpc/demo/*.proto
 	
 _tools/bin/%: tools.go
 	@mkdir -p ${GO_TOOLS_DIR}
