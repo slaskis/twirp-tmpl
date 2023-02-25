@@ -15,7 +15,7 @@ require (
 	github.com/mitchellh/reflectwalk v1.0.1 // indirect
 	github.com/slaskis/twirp-tmpl v0.0.0-20191104124320-3cbf018500f0
 	github.com/stretchr/testify v1.4.0 // indirect
-	golang.org/x/crypto v0.0.0-20191029031824-8986dd9e96cf // indirect
+	golang.org/x/crypto v0.1.0 // indirect
 	google.golang.org/genproto v0.0.0-20191028173616-919d9bdd9fe6 // indirect
 	gopkg.in/yaml.v2 v2.2.4 // indirect
 	moul.io/protoc-gen-gotemplate v1.7.0
